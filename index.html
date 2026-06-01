@@ -5,9 +5,9 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet"/>
 <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet"/>
-<title>MIROKU - Morning Sanctuary v13.1</title>
+<title>MIROKU - Morning Sanctuary v13.5</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Public+Sans:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;family=Noto+Serif+JP:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
   tailwind.config = {
@@ -15,963 +15,634 @@
     theme: {
       extend: {
         colors: {
-          "surface-dim": "#dbdad9",
-          "error-container": "#ffdad6",
-          "secondary-container": "#7ec2fd",
-          "surface-container": "#efeded",
-          "primary-container": "#2f50c1",
-          "error": "#ba1a1a",
-          "surface-container-low": "#f5f3f3",
-          "on-tertiary": "#ffffff",
-          "on-surface": "#1b1c1c",
-          "secondary-fixed": "#cde5ff",
-          "surface-variant": "#e4e2e2",
-          "surface-container-lowest": "#ffffff",
-          "on-surface-variant": "#444653",
-          "on-primary": "#ffffff",
-          "on-primary-container": "#c6cfff",
-          "secondary": "#026399",
-          "background": "#fbf9f8",
-          "tertiary-fixed": "#ffd8e6",
-          "primary-fixed-dim": "#b7c4ff",
-          "on-secondary-container": "#004f7b",
-          "surface-container-high": "#e9e8e7",
-          "primary": "#0936a9",
-          "tertiary-container": "#a91770",
-          "surface-tint": "#3455c6",
-          "outline-variant": "#c4c5d5",
-          "primary-fixed": "#dde1ff",
-          "on-error": "#ffffff",
-          "on-error-container": "#93000a",
-          "tertiary": "#840055",
-          "surface": "#fbf9f8",
-          "outline": "#747685",
-          "success": "#1f7a3a",
-          "warning": "#a55b00",
-          "info": "#0a84d6"
+          "surface-dim": "#dbdad9", "error-container": "#ffdad6", "secondary-container": "#7ec2fd",
+          "surface-container": "#efeded", "primary-container": "#2f50c1", "error": "#ba1a1a",
+          "surface-container-low": "#f5f3f3", "on-tertiary": "#ffffff", "on-surface": "#1b1c1c",
+          "secondary-fixed": "#cde5ff", "surface-variant": "#e4e2e2", "surface-container-lowest": "#ffffff",
+          "on-surface-variant": "#444653", "on-primary": "#ffffff", "on-primary-container": "#c6cfff",
+          "secondary": "#026399", "background": "#fbf9f8", "tertiary-fixed": "#ffd8e6",
+          "primary-fixed-dim": "#b7c4ff", "on-secondary-container": "#004f7b", "surface-container-high": "#e9e8e7",
+          "primary": "#0936a9", "tertiary-container": "#a91770", "surface-tint": "#3455c6",
+          "outline-variant": "#c4c5d5", "primary-fixed": "#dde1ff", "on-error": "#ffffff",
+          "on-error-container": "#93000a", "tertiary": "#840055", "surface": "#fbf9f8",
+          "outline": "#747685", "success": "#1f7a3a", "warning": "#a55b00", "info": "#0a84d6"
         },
-        fontFamily: {
-          "headline": ["Plus Jakarta Sans"],
-          "body": ["Public Sans"],
-          "label": ["Inter"],
-          "narrative": ["Noto Serif JP"]
-        },
+        fontFamily: { "headline": ["Plus Jakarta Sans", "sans-serif"], "body": ["Public Sans", "sans-serif"] },
         borderRadius: {"DEFAULT": "0.125rem", "lg": "0.5rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px"},
       },
     },
   }
 </script>
 <style>
-  body { font-family: 'Public Sans', sans-serif; background-color: #fbf9f8; color: #1b1c1c; -webkit-tap-highlight-color: transparent; }
-  .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
-  .font-label { font-family: 'Inter', sans-serif; }
-  .font-narrative { font-family: 'Noto Serif JP', serif; }
+  /* ===== Type scale: 24 / 17 / 15 / 13 の4段に固定。データに極小フォントは使わない ===== */
+  body { font-family:'Public Sans',sans-serif; font-size:15px; line-height:1.6; background-color:#fbf9f8; color:#1b1c1c; -webkit-tap-highlight-color:transparent; }
+  .font-headline { font-family:'Plus Jakarta Sans', sans-serif; }
+  .h-page { font-size:24px; font-weight:800; letter-spacing:-0.01em; line-height:1.25; }
+  .h-card { font-size:17px; font-weight:700; line-height:1.35; }
+  .h-sub  { font-size:15px; font-weight:700; line-height:1.4; }
+  .txt    { font-size:15px; }                 /* 本文・データの下限 */
+  .meta   { font-size:13px; color:#444653; line-height:1.5; }   /* 時刻ラベル・注記のみ */
+  .read   { font-size:15px; line-height:1.95; }                 /* 読み物（物語） */
+  .stat-num { font-size:26px; font-weight:700; line-height:1.1; }
+
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
   .glass-effect { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background-color: rgba(251,249,248,0.85); }
   .scene { display: none; }
   .scene.active { display: block; }
-  .modal-overlay { position: fixed; inset: 0; background: rgba(27,28,28,0.5); backdrop-filter: blur(4px); display: none; z-index: 50; }
-  .modal-overlay.active { display: flex; align-items: flex-end; justify-content: center; }
-  @media (min-width: 768px) { .modal-overlay.active { align-items: center; } }
-  .gradient-primary { background: linear-gradient(135deg, #0936a9 0%, #2f50c1 100%); }
-  .gradient-tertiary { background: linear-gradient(135deg, #840055 0%, #a91770 100%); }
-  .gradient-evening { background: linear-gradient(180deg, #fbf9f8 0%, #f5e8e0 100%); }
-  .privacy-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 9999px; font-size: 11px; font-weight: 500; }
 
-  /* P0: Certainty pills - 観測/推定/仮説/参考値 */
-  .kind-pill { display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px; border-radius: 9999px; font-size: 10px; font-weight: 600; font-family: 'Inter', sans-serif; line-height: 1.4; }
-  .kind-observed { background: #d4f0db; color: #1f7a3a; }      /* 観測: 機械的検知 */
-  .kind-inferred { background: #ffeacc; color: #a55b00; }      /* 推定: AI推論 (中) */
-  .kind-hypothesis { background: #e9e8e7; color: #444653; }    /* 仮説: 低精度 */
-  .kind-beta { background: #f0e0f0; color: #840055; }          /* β/参考値: 未検証 */
+  .kind-pill { display:inline-flex; align-items:center; gap:3px; padding:2px 8px; border-radius:9999px; font-size:10px; font-weight:600; line-height:1.4; vertical-align:middle; }
+  .kind-observed { background:#d4f0db; color:#1f7a3a; }
+  .kind-inferred { background:#ffeacc; color:#a55b00; }
+  .kind-hypothesis { background:#e9e8e7; color:#444653; }
+  .kind-beta { background:#f0e0f0; color:#840055; }
 
-  /* P1: Environment quality badge */
-  .env-good { background: #d4f0db; color: #1f7a3a; }
-  .env-warn { background: #ffeacc; color: #a55b00; }
-  .env-bad { background: #ffdad6; color: #ba1a1a; }
+  .info-q { display:inline-flex; align-items:center; justify-content:center; width:17px; height:17px; border-radius:50%; background:#e4e2e2; color:#444653; font-size:11px; font-weight:700; min-height:auto; min-width:auto; vertical-align:middle; cursor:pointer; line-height:1; }
+  .info-q::before { content:"?"; }
 
-  .live-dot { width:10px; height:10px; border-radius:50%; background:#1f7a3a; display:inline-block; animation: pulse 2s infinite; }
+  .env-good { background:#d4f0db; color:#1f7a3a; }
+  .env-warn { background:#ffeacc; color:#a55b00; }
+  .env-bad { background:#ffdad6; color:#ba1a1a; }
+  .privacy-badge { display:inline-flex; align-items:center; gap:4px; padding:4px 8px; border-radius:9999px; font-size:11px; font-weight:500; }
+
+  .live-dot { width:10px; height:10px; border-radius:50%; background:#1f7a3a; display:inline-block; animation:pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-  button, a, [role="button"] { min-height: 48px; min-width: 48px; }
-  .tap-sm { min-height: auto; min-width: auto; }
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
-  .tab-active .tab-icon { color: #0936a9; }
-  .tab-active .tab-label { color: #0936a9; font-weight: 700; }
+  button, a, [role="button"] { min-height:44px; min-width:44px; }
+  .tap-sm { min-height:auto; min-width:auto; }
+  @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
+  .tab-active .tab-icon { color:#0936a9; }
+  .tab-active .tab-label { color:#0936a9; font-weight:700; }
 
-  /* P0: Emergency overlay (J1) - independent from tab hierarchy */
-  .emergency-overlay { position: fixed; inset: 0; background: #fbf9f8; z-index: 60; display: none; flex-direction: column; overflow-y: auto; }
-  .emergency-overlay.active { display: flex; }
-  .emergency-pulse { animation: emergency-pulse 1.5s ease-in-out infinite; }
-  @keyframes emergency-pulse { 0%,100%{box-shadow: 0 0 0 0 rgba(186,26,26,0.4)} 70%{box-shadow: 0 0 0 16px rgba(186,26,26,0)} }
+  .overlay { position:fixed; inset:0; background:#fbf9f8; z-index:60; display:none; flex-direction:column; overflow-y:auto; }
+  .overlay.active { display:flex; }
+  .emergency-pulse { animation:emergency-pulse 1.5s ease-in-out infinite; }
+  @keyframes emergency-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(186,26,26,0.4)} 70%{box-shadow:0 0 0 16px rgba(186,26,26,0)} }
 
-  /* P0: Push notification mock */
-  .lock-screen { position: fixed; inset: 0; background: linear-gradient(180deg, #1b1c1c 0%, #2a2c30 100%); z-index: 70; display: none; flex-direction: column; padding: 60px 16px 16px; }
-  .lock-screen.active { display: flex; }
-  .lock-time { color: white; font-size: 64px; font-weight: 200; text-align: center; margin-bottom: 4px; font-family: 'Inter', sans-serif; }
-  .lock-date { color: rgba(255,255,255,0.7); text-align: center; margin-bottom: 32px; font-size: 14px; }
-  .push-card { background: rgba(255,255,255,0.95); border-radius: 16px; padding: 12px 14px; margin-bottom: 8px; }
+  .lock-screen { position:fixed; inset:0; background:linear-gradient(180deg,#1b1c1c 0%,#2a2c30 100%); z-index:70; display:none; flex-direction:column; padding:60px 16px 16px; }
+  .lock-screen.active { display:flex; }
+  .lock-time { color:white; font-size:64px; font-weight:200; text-align:center; margin-bottom:4px; }
+  .lock-date { color:rgba(255,255,255,0.7); text-align:center; margin-bottom:32px; font-size:14px; }
+  .push-card { background:rgba(255,255,255,0.95); border-radius:16px; padding:12px 14px; margin-bottom:8px; }
+
+  .chat-overlay { position:fixed; inset:0; background:#fbf9f8; z-index:65; display:none; flex-direction:column; }
+  .chat-overlay.active { display:flex; }
+  .chat-body { flex:1; overflow-y:auto; padding:16px; }
+  .chat-bubble-ai { background:#ffffff; border:1px solid #e4e2e2; border-radius:4px 16px 16px 16px; padding:12px 14px; max-width:88%; }
+  .chat-bubble-user { background:#0936a9; color:#fff; border-radius:16px 4px 16px 16px; padding:10px 14px; max-width:80%; margin-left:auto; }
+  .chat-chip { display:inline-block; border:1px solid #b7c4ff; color:#0936a9; background:#fff; border-radius:9999px; padding:8px 14px; font-size:14px; font-weight:600; }
+
+  .sheet { position:fixed; inset:0; background:rgba(27,28,28,0.45); backdrop-filter:blur(3px); z-index:80; display:none; align-items:flex-end; justify-content:center; }
+  .sheet.active { display:flex; }
+  @media (min-width:768px){ .sheet.active{ align-items:center; } }
+  .sheet-card { background:#fff; border-radius:16px 16px 0 0; max-width:28rem; width:100%; padding:20px 22px 28px; }
+  @media (min-width:768px){ .sheet-card{ border-radius:16px; } }
+
+  .clip-thumb { position:relative; border-radius:12px; overflow:hidden; aspect-ratio:16/10; background:linear-gradient(135deg,#1f3a5f,#840055); display:flex; align-items:flex-end; }
+  .clip-thumb .play-badge { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.9); display:flex; align-items:center; justify-content:center; }
+  .clip-thumb .cap { position:relative; width:100%; padding:7px 9px; background:linear-gradient(180deg,transparent,rgba(0,0,0,0.55)); color:#fff; }
+  .heat-cell { aspect-ratio:1; border-radius:4px; }
+  .cobar { height:10px; border-radius:9999px; background:#f0e0f0; overflow:hidden; }
+  .cobar > span { display:block; height:100%; background:linear-gradient(90deg,#a91770,#840055); }
+
+  .demo-toggle { border:1px dashed #c4c5d5; border-radius:12px; }
+  .demo-seg { font-size:13px; font-weight:600; padding:6px 14px; border-radius:9999px; }
+  .demo-seg.on { background:#0936a9; color:#fff; }
 </style>
 </head>
 <body class="pb-20 max-w-md mx-auto md:max-w-2xl">
 
-<!-- ===== Common Header ===== -->
+<!-- ===== Header ===== -->
 <header class="sticky top-0 z-40 glass-effect">
   <div class="flex items-center justify-between px-4 py-3">
     <button onclick="openHaltModal()" aria-label="緊急停止" class="tap-sm flex items-center gap-1 text-error">
-      <span class="material-symbols-outlined text-base">power_settings_new</span>
-      <span class="text-xs font-bold">停止</span>
+      <span class="material-symbols-outlined text-base">power_settings_new</span><span class="text-xs font-bold">停止</span>
     </button>
     <h1 class="text-base font-extrabold tracking-tight font-headline">MIROKU</h1>
-    <button onclick="showLockScreen()" class="tap-sm" aria-label="通知デモ" title="通知デモ">
-      <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
-    </button>
+    <div class="flex items-center gap-3">
+      <button onclick="showChat()" class="tap-sm text-primary" aria-label="相談"><span class="material-symbols-outlined">forum</span></button>
+      <button onclick="showLockScreen()" class="tap-sm" aria-label="通知デモ"><span class="material-symbols-outlined text-on-surface-variant">notifications</span></button>
+    </div>
   </div>
-  <!-- P1: Environment quality + Privacy badges -->
   <div class="px-4 pb-2 flex items-center gap-2 flex-wrap">
-    <span id="privacy-badge" class="privacy-badge bg-success bg-opacity-10 text-success">
-      <span class="material-symbols-outlined" style="font-size:14px">home</span>
-      推論はローカル
-    </span>
-    <span id="env-badge" class="privacy-badge env-good" title="環境音質">
-      <span class="material-symbols-outlined" style="font-size:14px">graphic_eq</span>
-      <span id="env-text">環境: 静寂</span>
-    </span>
-    <span id="halted-banner" class="hidden privacy-badge bg-error-container text-on-error-container">
-      <span class="material-symbols-outlined" style="font-size:14px">pause_circle</span>
-      録画停止中
-    </span>
+    <span id="privacy-badge" class="privacy-badge bg-success bg-opacity-10 text-success"><span class="material-symbols-outlined" style="font-size:14px">home</span>推論はローカル</span>
+    <span id="env-badge" class="privacy-badge env-good"><span class="material-symbols-outlined" style="font-size:14px">graphic_eq</span><span id="env-text">環境: 静寂</span></span>
+    <button class="info-q" data-info="legend" aria-label="表示の見かた"></button>
+    <span id="halted-banner" class="hidden privacy-badge bg-error-container text-on-error-container"><span class="material-symbols-outlined" style="font-size:14px">pause_circle</span>録画停止中</span>
   </div>
 </header>
 
 <main id="main">
 
-<!-- ============ SCENE: HOME (Time-of-day auto-switching with manual override) ============ -->
-<section id="scene-home" class="scene active">
+<!-- ============ HOME — 単一スクロール ============ -->
+<section id="scene-home" class="scene active px-4 py-4 space-y-3">
 
-  <!-- P1: Manual mode override chips (visible in all home modes) -->
-  <div class="px-4 pt-3 pb-1 flex items-center gap-2">
-    <p class="text-xs font-label text-on-surface-variant">表示:</p>
-    <button onclick="setHomeMode('morning', true)" data-mode="morning" class="mode-chip tap-sm text-xs px-3 py-1 rounded-full bg-surface-container-low font-label">朝</button>
-    <button onclick="setHomeMode('day', true)" data-mode="day" class="mode-chip tap-sm text-xs px-3 py-1 rounded-full bg-surface-container-low font-label">日中</button>
-    <button onclick="setHomeMode('evening', true)" data-mode="evening" class="mode-chip tap-sm text-xs px-3 py-1 rounded-full bg-surface-container-low font-label">夜</button>
+  <div class="pb-1">
+    <p id="home-greeting" class="meta mb-1">こんにちは、田中さん</p>
+    <h2 id="home-clock" class="h-page font-headline">4月27日 (月) 14:30</h2>
   </div>
 
-  <!-- ===== Morning Mode (5-10時) ===== -->
-  <div id="home-morning" class="hidden px-4 py-4 space-y-4">
-    <div>
-      <p class="text-xs font-label text-on-surface-variant mb-1">おはよう、田中さん</p>
-      <h2 class="text-3xl font-extrabold font-headline tracking-tight">4月27日 (月) 6:42</h2>
+  <!-- 今の様子 — 常設ライブ -->
+  <article class="bg-surface-container-lowest rounded-2xl p-5 border border-primary-fixed">
+    <div class="flex items-center justify-between mb-3">
+      <h3 class="h-card font-headline flex items-center gap-2"><span class="material-symbols-outlined text-primary">visibility</span>今の様子</h3>
+      <span class="flex items-center gap-1 text-xs font-bold text-success"><span class="live-dot"></span>ライブ</span>
     </div>
+    <div class="flex items-center gap-3 mb-2">
+      <span class="material-symbols-outlined text-4xl text-info" id="live-icon">bedtime</span>
+      <div><p class="font-bold text-lg" id="live-state">静かに横になっています</p><p class="meta" id="live-sub">12:45 から動きの少ない状態が続いています</p></div>
+    </div>
+    <div class="flex items-center gap-2 bg-success bg-opacity-10 rounded-xl px-3 py-2">
+      <span class="material-symbols-outlined text-success" style="font-size:18px">spa</span>
+      <p class="txt flex-1">今は穏やかな様子です</p>
+      <span class="kind-pill kind-inferred">推定</span>
+    </div>
+    <p class="meta mt-2">最終更新: 30秒前</p>
+  </article>
 
-    <!-- J3: Live Now (FIRST in morning - "今どうか" priority) -->
+  <!-- 今日のまとめ -->
+  <div class="pt-2 pb-1">
+    <h3 id="summary-heading" class="meta font-bold tracking-wide" style="text-transform:none">今日のまとめ</h3>
+  </div>
+
+  <!-- 朝 -->
+  <div id="summary-morning" class="hidden space-y-3">
     <article class="bg-surface-container-lowest rounded-2xl p-5">
       <div class="flex items-center justify-between mb-3">
-        <h3 class="text-lg font-bold font-headline flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary">visibility</span>
-          今の様子
-        </h3>
-        <div class="flex items-center gap-2">
-          <span class="kind-pill kind-observed"><span class="material-symbols-outlined" style="font-size:11px">visibility</span>観測</span>
-          <span class="flex items-center gap-1 text-xs font-bold text-success font-label">
-            <span class="live-dot"></span>ライブ
-          </span>
-        </div>
+        <h3 class="h-card font-headline flex items-center gap-2"><span class="material-symbols-outlined text-primary">bedtime</span>昨夜の睡眠</h3>
+        <span class="kind-pill kind-beta">β 参考値</span><button class="info-q" data-info="sleep"></button>
       </div>
-      <div class="flex items-center gap-3 mb-3">
-        <span class="material-symbols-outlined text-4xl text-info">crib</span>
-        <div>
-          <p class="font-bold text-lg">静かに過ごしています</p>
-          <p class="text-sm text-on-surface-variant">最終更新: 2分前</p>
-        </div>
-      </div>
-      <p class="text-xs text-on-surface-variant font-label">過去2時間の機械的検知: 寝返り 1回 / 発声 3回 / 動き継続</p>
-    </article>
-
-    <!-- Last night sleep - DOWNGRADED to β (V0 unverified) -->
-    <article class="bg-surface-container-lowest rounded-2xl p-5">
-      <div class="flex items-center justify-between mb-3">
-        <h3 class="text-lg font-bold font-headline flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary">bedtime</span>
-          昨夜の睡眠
-        </h3>
-        <span class="kind-pill kind-beta" title="V0 未検証 / 体動と静寂から推定">
-          <span class="material-symbols-outlined" style="font-size:11px">science</span>β 参考値
-        </span>
-      </div>
-      <svg viewBox="0 0 320 50" class="w-full h-12 mb-3" aria-label="睡眠タイムライン (推定)">
-        <line x1="20" y1="25" x2="300" y2="25" stroke="#dbdad9" stroke-width="4" stroke-linecap="round"/>
-        <line x1="20" y1="25" x2="120" y2="25" stroke="#0936a9" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
-        <circle cx="120" cy="25" r="4" fill="#a91770"/>
-        <line x1="120" y1="25" x2="200" y2="25" stroke="#0936a9" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
-        <circle cx="200" cy="25" r="4" fill="#a91770"/>
-        <line x1="200" y1="25" x2="300" y2="25" stroke="#0936a9" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
-        <text x="20" y="45" font-size="9" fill="#444653">20:30頃</text>
-        <text x="155" y="45" font-size="9" fill="#444653">24:00</text>
-        <text x="280" y="45" font-size="9" fill="#444653">6:30頃</text>
+      <svg viewBox="0 0 320 40" class="w-full h-9 mb-2">
+        <line x1="20" y1="20" x2="300" y2="20" stroke="#dbdad9" stroke-width="4" stroke-linecap="round"/>
+        <line x1="20" y1="20" x2="120" y2="20" stroke="#0936a9" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+        <circle cx="120" cy="20" r="4" fill="#a91770"/>
+        <line x1="120" y1="20" x2="200" y2="20" stroke="#0936a9" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+        <circle cx="200" cy="20" r="4" fill="#a91770"/>
+        <line x1="200" y1="20" x2="300" y2="20" stroke="#0936a9" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
       </svg>
-      <p class="text-xl font-bold font-headline mb-1 text-on-surface">推定 約 9時間 / 体動が増えた回数 2回</p>
-      <p class="text-xs text-on-surface-variant font-label">※ 体動と静寂から推定。体温・呼吸数は計測していません。</p>
+      <p class="h-sub">推定 約9時間 ・ 起きた回数 2回</p>
     </article>
-
-    <!-- Today's first observation -->
-    <article class="bg-surface-container-low rounded-xl p-4">
-      <div class="flex items-center justify-between mb-2">
-        <h4 class="font-bold flex items-center gap-2">
-          <span class="material-symbols-outlined text-tertiary">auto_awesome</span>
-          今朝の最初の動き
-        </h4>
-        <span class="kind-pill kind-observed">観測</span>
+    <article class="bg-surface-container-low rounded-2xl p-4">
+      <h4 class="h-sub flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-tertiary">auto_awesome</span>今朝の最初の動き</h4>
+      <p class="txt">6:18 寝返り → 起き上がる</p>
+    </article>
+    <article class="bg-surface-container-low rounded-2xl p-4">
+      <div class="flex items-center justify-between mb-1">
+        <h4 class="h-sub flex items-center gap-2"><span class="material-symbols-outlined text-warning">favorite</span>最近よく反応した関わり</h4>
+        <span class="kind-pill kind-inferred">推定</span><button class="info-q" data-info="care"></button>
       </div>
-      <p class="text-sm">6:18 寝返り → 起き上がる動作</p>
-      <p class="text-xs text-on-surface-variant mt-1 font-label">大人の声かけ: あり (6:25)</p>
+      <p class="txt"><span class="font-bold">大人の声かけ</span>のあとに笑顔が多めでした</p>
     </article>
   </div>
 
-  <!-- ===== Day Mode (10-19時) - J3 CORE ===== -->
-  <div id="home-day" class="hidden px-4 py-4 space-y-4">
-    <div>
-      <p class="text-xs font-label text-on-surface-variant mb-1">こんにちは、田中さん</p>
-      <h2 class="text-3xl font-extrabold font-headline tracking-tight">4月27日 (月) 14:30</h2>
-    </div>
-
-    <!-- J3: Live state (priority during work hours) -->
+  <!-- 日中 -->
+  <div id="summary-day" class="hidden space-y-3">
     <article class="bg-surface-container-lowest rounded-2xl p-5">
       <div class="flex items-center justify-between mb-3">
-        <h3 class="text-lg font-bold font-headline flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary">visibility</span>
-          今の様子
-        </h3>
-        <div class="flex items-center gap-2">
-          <span class="kind-pill kind-observed">観測</span>
-          <span class="flex items-center gap-1 text-xs font-bold text-success font-label">
-            <span class="live-dot"></span>ライブ
-          </span>
-        </div>
+        <h3 class="h-card font-headline flex items-center gap-2"><span class="material-symbols-outlined text-primary">history</span>前回見てからの変化</h3>
+        <button class="info-q" data-info="alone"></button>
       </div>
-      <div class="flex items-center gap-3 mb-3">
-        <span class="material-symbols-outlined text-4xl text-info">bedtime</span>
-        <div>
-          <p class="font-bold text-lg">静かに横になっています</p>
-          <p class="text-sm text-on-surface-variant">12:45 から動きの少ない状態が継続</p>
-        </div>
-      </div>
-      <p class="text-xs text-on-surface-variant font-label">最終更新: 30秒前</p>
-    </article>
-
-    <!-- J3 redefined: "前回見てからの変化" with quick scan -->
-    <article class="bg-surface-container-lowest rounded-2xl p-5">
-      <div class="flex items-center justify-between mb-3">
-        <h3 class="text-lg font-bold font-headline flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary">history</span>
-          前回見てからの変化
-        </h3>
-        <span class="kind-pill kind-observed">観測</span>
-      </div>
-      <ul class="text-sm space-y-2">
-        <li class="flex items-start gap-2">
-          <span class="material-symbols-outlined text-success" style="font-size:18px">circle</span>
-          <span>大人の介入なし時間: <span class="font-bold">1時間45分</span></span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="material-symbols-outlined text-info" style="font-size:18px">graphic_eq</span>
-          <span>泣き声: <span class="font-bold">0回</span></span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="material-symbols-outlined text-tertiary" style="font-size:18px">arrow_forward</span>
-          <span>状態の変化: 起きていた → 静かに横になる</span>
-        </li>
+      <ul class="txt space-y-2.5">
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-success" style="font-size:20px">person</span>一人で活動した時間 <span class="font-bold">1時間45分</span></li>
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-info" style="font-size:20px">graphic_eq</span>泣き声 <span class="font-bold">0回</span></li>
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary" style="font-size:20px">arrow_forward</span>起きていた → 静かに横になる</li>
       </ul>
     </article>
-
-    <!-- Recent observations timeline (with kind pills) -->
     <article class="bg-surface-container-lowest rounded-2xl p-5">
-      <h3 class="text-lg font-bold font-headline mb-4 flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary">timeline</span>
-        最近の観察
-      </h3>
+      <h3 class="h-card font-headline mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-primary">timeline</span>今日の流れ</h3>
       <ol class="space-y-3 relative pl-5 border-l-2 border-surface-container-low">
-        <li class="relative">
-          <span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-info"></span>
-          <p class="text-xs font-label text-on-surface-variant">14:25 <span class="kind-pill kind-observed ml-1">観測</span></p>
-          <p class="text-sm">短い発声「あー」</p>
-        </li>
-        <li class="relative">
-          <span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-tertiary"></span>
-          <p class="text-xs font-label text-on-surface-variant">12:45 <span class="kind-pill kind-inferred ml-1">推定</span></p>
-          <p class="text-sm">入眠した可能性 <span class="text-on-surface-variant">(体動の減少から推定)</span></p>
-        </li>
-        <li class="relative">
-          <span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-success"></span>
-          <p class="text-xs font-label text-on-surface-variant">12:10 <span class="kind-pill kind-observed ml-1">観測</span></p>
-          <p class="text-sm">手で物を握る動作</p>
-        </li>
-        <li class="relative">
-          <span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-success"></span>
-          <p class="text-xs font-label text-on-surface-variant">11:30 <span class="kind-pill kind-observed ml-1">観測</span></p>
-          <p class="text-sm">大人の声かけに笑い声で反応</p>
-        </li>
+        <li class="relative"><span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-info"></span><p class="meta">14:25</p><p class="txt">短い発声「あー」</p></li>
+        <li class="relative"><span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-tertiary"></span><p class="meta">12:45 <span class="kind-pill kind-inferred">推定</span></p><p class="txt">入眠した可能性</p></li>
+        <li class="relative"><span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-success"></span><p class="meta">12:10</p><p class="txt">手で物を握る動作</p></li>
+        <li class="relative"><span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-success"></span><p class="meta">11:30</p><p class="txt">声かけに笑い声で反応</p></li>
       </ol>
     </article>
   </div>
 
-  <!-- ===== Evening Mode (20-23時) - J5 CORE ===== -->
-  <div id="home-evening" class="hidden px-4 py-4 space-y-4 gradient-evening">
-    <div>
-      <h2 class="text-3xl font-extrabold font-headline tracking-tight">今日のふりかえり</h2>
-      <p class="text-xs font-label text-on-surface-variant">4月27日 (月) 21:30</p>
-    </div>
-
-    <!-- J5: COMPACT narrative (1段落 + 証拠チップ + CTA) -->
-    <article class="bg-surface-container-lowest rounded-2xl p-6">
-      <div class="flex items-center justify-between mb-3">
-        <h3 class="text-lg font-bold font-headline flex items-center gap-2">
-          <span class="material-symbols-outlined text-tertiary">menu_book</span>
-          今日の物語
-        </h3>
-        <span class="kind-pill kind-inferred"><span class="material-symbols-outlined" style="font-size:11px">smart_toy</span>AI生成</span>
-      </div>
-      <p class="font-narrative text-base leading-loose text-on-surface mb-4">
-        今日は穏やかな一日でした。午後、長く立ち上がる姿が観察され、夕方には大人の声かけに大きな笑い声で応える場面がありました。
-      </p>
-
-      <!-- Evidence chips -->
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="text-xs px-3 py-1 bg-surface-container-low rounded-full font-label">14:23 立位5秒</span>
-        <span class="text-xs px-3 py-1 bg-surface-container-low rounded-full font-label">17:48 笑い声</span>
-        <span class="text-xs px-3 py-1 bg-surface-container-low rounded-full font-label">18:30 介入応答</span>
-        <button class="text-xs px-3 py-1 bg-primary-fixed text-primary rounded-full font-label tap-sm">+ 詳細</button>
-      </div>
-
-      <!-- CTAs -->
-      <div class="flex gap-2">
-        <button class="flex-1 text-sm font-bold py-2 bg-primary text-on-primary rounded-full">保存</button>
-        <button class="flex-1 text-sm font-bold py-2 bg-surface-container-low rounded-full">共有</button>
-        <button class="flex-1 text-sm font-bold py-2 bg-surface-container-low rounded-full">記録</button>
-      </div>
-      <button class="tap-sm mt-3 text-sm text-primary font-bold w-full text-left">もっと読む →</button>
-    </article>
-
-    <!-- J4: Today's hits - rewritten without object/speaker identification -->
+  <!-- 夜 -->
+  <div id="summary-evening" class="hidden space-y-3">
     <article class="bg-surface-container-lowest rounded-2xl p-5">
       <div class="flex items-center justify-between mb-3">
-        <h3 class="text-lg font-bold font-headline flex items-center gap-2">
-          <span class="material-symbols-outlined text-warning">target</span>
-          反応の良かった刺激候補
-        </h3>
-        <span class="kind-pill kind-hypothesis"><span class="material-symbols-outlined" style="font-size:11px">help</span>仮説</span>
+        <h3 class="h-card font-headline flex items-center gap-2"><span class="material-symbols-outlined text-tertiary">menu_book</span>今日の物語</h3>
+        <span class="kind-pill kind-inferred">AI生成</span>
       </div>
-      <p class="text-xs text-on-surface-variant mb-3 font-label">笑顔・笑い声の前後で観察された場面</p>
-      <ol class="space-y-3">
-        <li class="flex items-start gap-3">
-          <span class="font-extrabold text-2xl text-tertiary font-headline">1</span>
-          <div class="flex-1">
-            <p class="font-bold">大人の声かけ</p>
-            <p class="text-xs text-on-surface-variant">前後5秒以内に笑顔: 3回</p>
-          </div>
-          <button class="tap-sm text-xs px-2 text-primary font-bold">→ 動画</button>
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="font-extrabold text-2xl text-tertiary font-headline">2</span>
-          <div class="flex-1">
-            <p class="font-bold">特定のおもちゃとの相互作用</p>
-            <p class="text-xs text-on-surface-variant">前後10秒以内に笑い声: 2回 <button class="text-primary tap-sm font-bold">→ どれ?</button></p>
-          </div>
-          <button class="tap-sm text-xs px-2 text-primary font-bold">→ 動画</button>
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="font-extrabold text-2xl text-tertiary font-headline">3</span>
-          <div class="flex-1">
-            <p class="font-bold">音楽・動画音声</p>
-            <p class="text-xs text-on-surface-variant">集中状態: 5分継続</p>
-          </div>
-        </li>
-      </ol>
-      <p class="text-xs text-on-surface-variant mt-3 font-label">※ 因果関係ではなく、共起の頻度です。</p>
+      <p class="read text-on-surface mb-4">今日は穏やかな一日でした。午後、長く立ち上がる姿が観察され、夕方には大人の声かけに大きな笑い声で応える場面がありました。</p>
+      <div class="grid grid-cols-3 gap-2 mb-3">
+        <button class="clip-thumb tap-sm"><span class="play-badge"><span class="material-symbols-outlined text-primary" style="font-size:20px">play_arrow</span></span><span class="cap"><span class="block text-[11px] opacity-90">14:23</span><span class="block text-[13px] font-bold">立位5秒</span></span></button>
+        <button class="clip-thumb tap-sm"><span class="play-badge"><span class="material-symbols-outlined text-primary" style="font-size:20px">play_arrow</span></span><span class="cap"><span class="block text-[11px] opacity-90">17:48</span><span class="block text-[13px] font-bold">笑い声</span></span></button>
+        <button class="clip-thumb tap-sm"><span class="play-badge"><span class="material-symbols-outlined text-primary" style="font-size:20px">play_arrow</span></span><span class="cap"><span class="block text-[11px] opacity-90">12:45</span><span class="block text-[13px] font-bold">新しい発声</span></span></button>
+      </div>
+      <div class="flex gap-2">
+        <button class="flex-1 txt font-bold py-2 bg-primary text-on-primary rounded-full">保存</button>
+        <button class="flex-1 txt font-bold py-2 bg-surface-container-low rounded-full">共有</button>
+        <button onclick="showChat()" class="flex-1 txt font-bold py-2 bg-surface-container-low rounded-full flex items-center justify-center gap-1"><span class="material-symbols-outlined" style="font-size:16px">forum</span>聞く</button>
+      </div>
     </article>
-
-    <!-- J2: Milestones reached today - with parent confirmation -->
-    <article class="gradient-tertiary text-on-tertiary rounded-2xl p-5">
-      <div class="flex items-center justify-between mb-3">
-        <h3 class="text-lg font-bold font-headline flex items-center gap-2">
-          <span class="material-symbols-outlined">workspace_premium</span>
-          今日の「初めて」候補
-        </h3>
-        <span class="kind-pill bg-white bg-opacity-25 text-white"><span class="material-symbols-outlined" style="font-size:11px">visibility</span>観測</span>
+    <article class="bg-surface-container-lowest rounded-2xl p-5">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="h-card font-headline flex items-center gap-2"><span class="material-symbols-outlined text-warning">insights</span>よく一緒に見られた刺激</h3>
+        <span class="kind-pill kind-hypothesis">仮説</span><button class="info-q" data-info="cooccur"></button>
       </div>
-      <ul class="space-y-3 text-sm">
-        <li class="bg-white bg-opacity-15 rounded-xl p-3">
-          <p class="font-bold">5秒間の自立姿勢</p>
-          <p class="text-xs opacity-90 mb-2">14:23 観測 / 一般的に9-15ヶ月で見られる動作</p>
-          <div class="flex gap-2">
-            <button class="flex-1 bg-white text-tertiary text-xs font-bold py-2 rounded-full tap-sm">記録する</button>
-            <button class="flex-1 bg-white bg-opacity-25 text-white text-xs py-2 rounded-full tap-sm">まだ確信なし</button>
-          </div>
+      <div class="space-y-3 mt-3">
+        <div><div class="flex justify-between txt mb-1"><span class="font-bold">大人の声かけ</span><span class="meta">48%</span></div><div class="cobar"><span style="width:48%"></span></div></div>
+        <div><div class="flex justify-between txt mb-1"><span class="font-bold">おもちゃで遊ぶ</span><span class="meta">32%</span></div><div class="cobar"><span style="width:32%"></span></div></div>
+        <div><div class="flex justify-between txt mb-1"><span class="font-bold">音楽・動画音声</span><span class="meta">20%</span></div><div class="cobar"><span style="width:20%"></span></div></div>
+      </div>
+    </article>
+    <article class="bg-surface-container-lowest rounded-2xl p-5">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="h-card font-headline flex items-center gap-2"><span class="material-symbols-outlined text-tertiary">workspace_premium</span>今日の「初めて」候補</h3>
+        <span class="kind-pill kind-observed">観測</span>
+      </div>
+      <ul class="space-y-3">
+        <li class="bg-tertiary-fixed bg-opacity-40 rounded-xl p-3">
+          <p class="h-sub">5秒間の自立姿勢</p>
+          <p class="meta mb-2">14:23 ・ 一般的に9-15ヶ月で見られる動作</p>
+          <div class="flex gap-2"><button class="flex-1 bg-tertiary text-on-tertiary txt font-bold py-2 rounded-full tap-sm">記録する</button><button class="flex-1 bg-surface-container-low txt py-2 rounded-full tap-sm">まだ確信なし</button></div>
         </li>
-        <li class="bg-white bg-opacity-15 rounded-xl p-3">
-          <p class="font-bold">新しい発声「だ」</p>
-          <p class="text-xs opacity-90 mb-2">12:45 観測 / 喃語の音節バリエーション</p>
-          <div class="flex gap-2">
-            <button class="flex-1 bg-white text-tertiary text-xs font-bold py-2 rounded-full tap-sm">記録する</button>
-            <button class="flex-1 bg-white bg-opacity-25 text-white text-xs py-2 rounded-full tap-sm">まだ確信なし</button>
-          </div>
+        <li class="bg-surface-container-low rounded-xl p-3">
+          <p class="h-sub">新しい発声「だ」</p>
+          <p class="meta mb-2">12:45 ・ 喃語の音節バリエーション</p>
+          <div class="flex gap-2"><button class="flex-1 bg-tertiary text-on-tertiary txt font-bold py-2 rounded-full tap-sm">記録する</button><button class="flex-1 bg-surface-container-lowest txt py-2 rounded-full tap-sm">まだ確信なし</button></div>
         </li>
       </ul>
     </article>
+  </div>
+
+  <div class="demo-toggle p-3 flex items-center gap-2 flex-wrap">
+    <span class="meta flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:15px">science</span>[Demo] 開いた時刻のシミュレーション（本番は自動）</span>
+    <div class="flex gap-1 ml-auto">
+      <button onclick="setSummary('morning', true)" data-seg="morning" class="demo-seg bg-surface-container-low tap-sm">朝</button>
+      <button onclick="setSummary('day', true)" data-seg="day" class="demo-seg bg-surface-container-low tap-sm">昼</button>
+      <button onclick="setSummary('evening', true)" data-seg="evening" class="demo-seg bg-surface-container-low tap-sm">夜</button>
+    </div>
   </div>
 </section>
 
-<!-- ============ SCENE: NOTICES TAB (気づき) - 3 lanes: 要対応 / 初めて / 発見 ============ -->
+<!-- ============ NOTICES (気づき) ============ -->
 <section id="scene-cry" class="scene px-4 py-4">
-  <div class="mb-4">
-    <h2 class="text-3xl font-extrabold font-headline tracking-tight">気づき</h2>
-    <p class="text-xs font-label text-on-surface-variant">AI が今日見つけたこと</p>
-  </div>
+  <div class="mb-4 pt-1"><h2 class="h-page font-headline">気づき</h2></div>
 
-  <!-- Current state (always visible at top) -->
-  <article class="bg-surface-container-lowest rounded-2xl p-4 text-center mb-4">
+  <article class="bg-surface-container-lowest rounded-2xl p-4 text-center mb-3">
     <span class="material-symbols-outlined text-3xl text-success">sentiment_satisfied</span>
-    <p class="font-bold mt-1">今は穏やかです</p>
-    <p class="text-xs text-on-surface-variant mt-1">最終チェック: 30秒前</p>
-    <button onclick="simulateCrying()" class="tap-sm mt-3 text-xs text-primary underline">[Demo] 鳴き声を検出する</button>
+    <p class="h-sub mt-1">今は穏やかです</p>
+    <button onclick="simulateCrying()" class="tap-sm mt-2 meta text-primary underline">[Demo] 鳴き声を検出する</button>
   </article>
 
-  <!-- LANE 1: 要対応 (urgent / actionable now) -->
-  <article class="bg-surface-container-lowest rounded-2xl p-5 mb-4">
-    <div class="flex items-center justify-between mb-3">
-      <h3 class="text-base font-bold font-headline flex items-center gap-2">
-        <span class="material-symbols-outlined text-error">priority_high</span>
-        要対応
-      </h3>
-      <span class="text-xs font-label text-on-surface-variant">今すぐ確認</span>
-    </div>
-    <p class="text-sm text-on-surface-variant text-center py-3 font-label">対応が必要な状況はありません</p>
+  <article class="bg-surface-container-lowest rounded-2xl p-5 mb-3">
+    <h3 class="h-card font-headline flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-error">priority_high</span>要対応</h3>
+    <p class="txt text-on-surface-variant text-center py-2">対応が必要な状況はありません</p>
   </article>
 
-  <!-- LANE 2: 今日の「初めて」 -->
-  <article class="bg-surface-container-lowest rounded-2xl p-5 mb-4">
-    <div class="flex items-center justify-between mb-3">
-      <h3 class="text-base font-bold font-headline flex items-center gap-2">
-        <span class="material-symbols-outlined text-tertiary">workspace_premium</span>
-        今日の「初めて」候補
-      </h3>
-      <span class="kind-pill kind-observed">観測</span>
-    </div>
+  <article class="bg-surface-container-lowest rounded-2xl p-5 mb-3">
+    <h3 class="h-card font-headline flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-tertiary">workspace_premium</span>今日の「初めて」候補 <span class="kind-pill kind-observed">観測</span></h3>
     <ul class="space-y-3">
-      <li class="bg-tertiary-fixed bg-opacity-30 rounded-xl p-3">
-        <p class="text-xs font-label text-tertiary font-bold">14:23 ・ 動きの新しさ</p>
-        <p class="text-sm font-bold mt-1">5秒間の自立姿勢</p>
-        <p class="text-xs text-on-surface-variant mt-1">一般的に9-15ヶ月で見られる動作</p>
-        <div class="flex gap-2 mt-2">
-          <button class="flex-1 bg-tertiary text-on-tertiary text-xs font-bold py-2 rounded-full tap-sm">記録する</button>
-          <button class="flex-1 bg-surface-container-low text-xs py-2 rounded-full tap-sm">まだ確信なし</button>
-        </div>
+      <li class="bg-tertiary-fixed bg-opacity-40 rounded-xl p-3">
+        <p class="meta text-tertiary font-bold">14:23 ・ 動きの新しさ</p>
+        <p class="h-sub mt-1">5秒間の自立姿勢</p>
+        <div class="flex gap-2 mt-2"><button class="flex-1 bg-tertiary text-on-tertiary txt font-bold py-2 rounded-full tap-sm">記録する</button><button class="flex-1 bg-surface-container-low txt py-2 rounded-full tap-sm">まだ確信なし</button></div>
       </li>
       <li class="bg-surface-container-low rounded-xl p-3">
-        <p class="text-xs font-label text-on-surface-variant">12:45 ・ 新しい発声</p>
-        <p class="text-sm font-bold mt-1">「だ」と発声</p>
-        <div class="flex gap-2 mt-2">
-          <button class="flex-1 bg-tertiary text-on-tertiary text-xs font-bold py-2 rounded-full tap-sm">記録する</button>
-          <button class="flex-1 bg-surface-container-lowest text-xs py-2 rounded-full tap-sm">まだ確信なし</button>
-        </div>
+        <p class="meta">2週間前との差分</p>
+        <p class="h-sub mt-1">「だ」の発声が安定して観測されています</p>
+        <p class="meta mt-1">2週間前には観測されていませんでした</p>
       </li>
     </ul>
   </article>
 
-  <!-- LANE 3: あとで読む発見 -->
-  <article class="bg-surface-container-lowest rounded-2xl p-5 mb-4">
-    <div class="flex items-center justify-between mb-3">
-      <h3 class="text-base font-bold font-headline flex items-center gap-2">
-        <span class="material-symbols-outlined text-info">lightbulb</span>
-        あとで読む発見
-      </h3>
-      <span class="kind-pill kind-hypothesis">仮説</span>
-    </div>
-    <ul class="space-y-3">
+  <article class="bg-surface-container-lowest rounded-2xl p-5 mb-3">
+    <h3 class="h-card font-headline flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-info">lightbulb</span>あとで読む発見 <span class="kind-pill kind-hypothesis">仮説</span></h3>
+    <ul class="space-y-4">
       <li class="border-l-2 border-info pl-3">
-        <p class="text-xs font-label text-on-surface-variant">11:30 ・ 反応の強さ</p>
-        <p class="text-sm">大人の声かけに笑顔で反応 (本日 3回)</p>
-        <p class="text-xs text-on-surface-variant mt-1 font-label">→ 反応の良い場面の候補</p>
+        <p class="meta">11:30 ・ 反応の強さ</p>
+        <p class="txt">声かけに笑顔で反応 (本日3回)</p>
+        <button class="mt-1 inline-flex items-center gap-1 meta text-primary font-bold tap-sm"><span class="material-symbols-outlined" style="font-size:15px">play_circle</span>録画を見る</button>
       </li>
       <li class="border-l-2 border-info pl-3">
-        <p class="text-xs font-label text-on-surface-variant">10:15 ・ 物との相互作用</p>
-        <p class="text-sm">両手で物を扱う場面が観察されました</p>
+        <p class="meta flex items-center gap-1">時間帯別の反応傾向 <button class="info-q" data-info="timeresp"></button></p>
+        <p class="txt">声かけのあと、夕方に笑顔・喃語が多めに観測されました</p>
+      </li>
+      <li class="border-l-2 border-info pl-3">
+        <p class="meta flex items-center gap-1">前日との比較 <span class="kind-pill kind-beta">β</span> <button class="info-q" data-info="prevday"></button></p>
+        <p class="txt">前日は睡眠が短め ／ 今日は泣き声検出が多め</p>
       </li>
     </ul>
   </article>
 
-  <!-- LANE 4: 過去の鳴き声履歴 -->
   <article class="bg-surface-container-low rounded-2xl p-5">
-    <h3 class="text-base font-bold font-headline mb-3 flex items-center gap-2">
-      <span class="material-symbols-outlined text-warning">graphic_eq</span>
-      今日の鳴き声履歴
-    </h3>
-    <ol class="space-y-3 text-sm">
-      <li class="flex items-start gap-2">
-        <span class="material-symbols-outlined text-warning" style="font-size:16px">sentiment_dissatisfied</span>
-        <div class="flex-1">
-          <p>12:08 鳴き声 → <span class="kind-pill kind-inferred">推定</span> 候補: 空腹 / 眠気</p>
-          <p class="text-xs text-on-surface-variant mt-1">→ 親対応: 授乳 / 落ち着いた</p>
-        </div>
-      </li>
-      <li class="flex items-start gap-2">
-        <span class="material-symbols-outlined text-warning" style="font-size:16px">sentiment_dissatisfied</span>
-        <div class="flex-1">
-          <p>09:45 鳴き声 → <span class="kind-pill kind-inferred">推定</span> 候補: 眠気</p>
-          <p class="text-xs text-on-surface-variant mt-1">→ 親対応: 抱っこ / 落ち着いた</p>
-        </div>
-      </li>
-      <li class="flex items-start gap-2">
-        <span class="material-symbols-outlined text-warning" style="font-size:16px">sentiment_dissatisfied</span>
-        <div class="flex-1">
-          <p>06:50 鳴き声 → <span class="kind-pill kind-inferred">推定</span> 候補: 不快感 (オムツ可能性)</p>
-          <p class="text-xs text-on-surface-variant mt-1">→ 親対応: オムツ交換 / 落ち着いた</p>
-        </div>
-      </li>
+    <h3 class="h-card font-headline flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-warning">graphic_eq</span>今日の鳴き声履歴</h3>
+    <ol class="space-y-3 txt mb-4">
+      <li>12:08 <span class="kind-pill kind-inferred">推定</span> 空腹/眠気 <span class="meta">→ 授乳で落ち着いた</span></li>
+      <li>09:45 <span class="kind-pill kind-inferred">推定</span> 眠気 <span class="meta">→ 抱っこで落ち着いた</span></li>
+      <li>06:50 <span class="kind-pill kind-inferred">推定</span> 不快感 <span class="meta">→ オムツ交換で落ち着いた</span></li>
     </ol>
+    <div class="border-t border-surface-container pt-3">
+      <p class="h-sub mb-2 flex items-center gap-1"><span class="material-symbols-outlined text-on-surface-variant" style="font-size:17px">schedule</span>泣き声が検出された時刻（直近3日）<button class="info-q" data-info="crytime"></button></p>
+      <div class="space-y-1.5 txt">
+        <div class="flex gap-3"><span class="meta w-12">今日</span><span>06:50・09:45・12:08</span></div>
+        <div class="flex gap-3"><span class="meta w-12">昨日</span><span>07:10・10:02・12:30</span></div>
+        <div class="flex gap-3"><span class="meta w-12">一昨日</span><span>06:40・12:15</span></div>
+      </div>
+    </div>
   </article>
 </section>
 
-<!-- ============ SCENE: GROWTH (J6 + J2 - motor only) ============ -->
-<section id="scene-growth" class="scene px-4 py-4 space-y-4">
-  <div>
-    <h2 class="text-3xl font-extrabold font-headline tracking-tight">成長レポート</h2>
-    <p class="text-sm text-on-surface-variant font-label">2026年4月（生後8ヶ月）</p>
-  </div>
+<!-- ============ GROWTH ============ -->
+<section id="scene-growth" class="scene px-4 py-4 space-y-3">
+  <div class="pt-1"><h2 class="h-page font-headline">成長レポート</h2><p class="meta">2026年4月（生後8ヶ月）</p></div>
 
-  <!-- J6+J2: Motor milestones - softened wording, no normative pressure -->
   <article class="bg-surface-container-lowest rounded-2xl p-5">
-    <div class="flex items-center justify-between mb-3">
-      <h3 class="text-lg font-bold font-headline flex items-center gap-2">
-        <span class="material-symbols-outlined text-tertiary">workspace_premium</span>
-        動きの発達タイムライン
-      </h3>
-      <span class="kind-pill kind-observed"><span class="material-symbols-outlined" style="font-size:11px">visibility</span>観測</span>
-    </div>
+    <h3 class="h-card font-headline flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-tertiary">workspace_premium</span>動きの発達タイムライン <span class="kind-pill kind-observed">観測</span><button class="info-q" data-info="dev"></button></h3>
     <div class="relative pl-6 border-l-2 border-surface-container-low space-y-4">
-      <div class="relative">
-        <span class="absolute -left-[31px] top-0 material-symbols-outlined text-success" style="font-size:22px">check_circle</span>
-        <p class="font-bold">寝返り</p>
-        <p class="text-xs text-on-surface-variant">5ヶ月で観察 / 一般的な範囲: 3-7ヶ月</p>
-      </div>
-      <div class="relative">
-        <span class="absolute -left-[31px] top-0 material-symbols-outlined text-success" style="font-size:22px">check_circle</span>
-        <p class="font-bold">座位</p>
-        <p class="text-xs text-on-surface-variant">7ヶ月で観察 / 一般的な範囲: 6-9ヶ月</p>
-      </div>
-      <div class="relative bg-tertiary-fixed bg-opacity-30 -mx-2 px-2 py-2 rounded-lg">
-        <span class="absolute -left-[28px] top-2 material-symbols-outlined text-tertiary" style="font-size:22px">auto_awesome</span>
-        <p class="font-bold text-tertiary">5秒間の自立姿勢 - 今日観察</p>
-        <p class="text-xs">8ヶ月で観察 / 一般的な範囲: 9-15ヶ月</p>
-      </div>
-      <div class="relative">
-        <span class="absolute -left-[31px] top-0 material-symbols-outlined text-on-surface-variant" style="font-size:22px">schedule</span>
-        <p class="text-on-surface-variant">ハイハイ</p>
-        <p class="text-xs text-on-surface-variant">次に見られることがある変化 / 一般的な範囲: 7-11ヶ月</p>
-      </div>
-      <div class="relative">
-        <span class="absolute -left-[31px] top-0 material-symbols-outlined text-on-surface-variant" style="font-size:22px">schedule</span>
-        <p class="text-on-surface-variant">つかまり立ち</p>
-        <p class="text-xs text-on-surface-variant">次に見られることがある変化 / 一般的な範囲: 8-12ヶ月</p>
-      </div>
+      <div class="relative"><span class="absolute -left-[31px] top-0 material-symbols-outlined text-success" style="font-size:22px">check_circle</span><p class="h-sub">寝返り</p><p class="meta">5ヶ月で観察 / 一般的な範囲 3-7ヶ月</p></div>
+      <div class="relative"><span class="absolute -left-[31px] top-0 material-symbols-outlined text-success" style="font-size:22px">check_circle</span><p class="h-sub">座位</p><p class="meta">7ヶ月で観察 / 一般的な範囲 6-9ヶ月</p></div>
+      <div class="relative bg-tertiary-fixed bg-opacity-40 -mx-2 px-2 py-2 rounded-lg"><span class="absolute -left-[28px] top-2 material-symbols-outlined text-tertiary" style="font-size:22px">auto_awesome</span><p class="h-sub text-tertiary">5秒間の自立姿勢 - 今日観察</p><p class="meta">8ヶ月で観察 / 一般的な範囲 9-15ヶ月</p></div>
+      <div class="relative"><span class="absolute -left-[31px] top-0 material-symbols-outlined text-on-surface-variant" style="font-size:22px">schedule</span><p class="h-sub text-on-surface-variant">ハイハイ</p><p class="meta">一般的な範囲 7-11ヶ月</p></div>
+      <div class="relative"><span class="absolute -left-[31px] top-0 material-symbols-outlined text-on-surface-variant" style="font-size:22px">schedule</span><p class="h-sub text-on-surface-variant">つかまり立ち</p><p class="meta">一般的な範囲 8-12ヶ月</p></div>
     </div>
-    <p class="text-xs text-on-surface-variant mt-4 flex items-center gap-1 font-label">
-      <span class="material-symbols-outlined" style="font-size:14px">info</span>
-      個人差があります。診断的な意味はありません。
-    </p>
+    <div class="bg-surface-container-low rounded-xl p-3 mt-4">
+      <p class="txt">新しい動きの観測が、ここ2週間ほど落ち着いています。<button class="info-q" data-info="plateau"></button></p>
+    </div>
   </article>
 
-  <!-- Monthly narrative -->
-  <article class="bg-surface-container-low rounded-2xl p-5">
-    <div class="flex items-center justify-between mb-3">
-      <h3 class="font-bold flex items-center gap-2">
-        <span class="material-symbols-outlined text-tertiary">menu_book</span>
-        4月のふりかえり
-      </h3>
-      <span class="kind-pill kind-inferred">AI生成</span>
-    </div>
-    <p class="font-narrative text-sm leading-loose">
-      4月は新しい姿勢への挑戦が見られた月でした。立ち上がる動作が初めて観察され、発声のバリエーションも少しずつ増えています。
-    </p>
-  </article>
-
-  <!-- Monthly summary stats -->
   <article class="bg-surface-container-lowest rounded-2xl p-5">
-    <div class="flex items-center justify-between mb-3">
-      <h3 class="font-bold flex items-center gap-2">
-        <span class="material-symbols-outlined">analytics</span>
-        今月の機械的カウント
-      </h3>
-      <span class="kind-pill kind-observed">観測</span>
-    </div>
-    <div class="grid grid-cols-3 gap-3 text-center">
-      <div class="bg-surface-container-low rounded-xl p-3"><p class="text-2xl font-bold font-headline text-tertiary">142</p><p class="text-xs text-on-surface-variant">笑顔の検出回数</p></div>
-      <div class="bg-surface-container-low rounded-xl p-3"><p class="text-2xl font-bold font-headline text-info">3</p><p class="text-xs text-on-surface-variant">新しい発声候補</p></div>
-      <div class="bg-surface-container-low rounded-xl p-3"><p class="text-2xl font-bold font-headline text-success">89%</p><p class="text-xs text-on-surface-variant">声かけ後5秒以内の反応率</p></div>
+    <h3 class="h-card font-headline flex items-center gap-2 mb-1"><span class="material-symbols-outlined text-info">grid_on</span>笑顔の時間帯 <span class="kind-pill kind-observed">観測</span><button class="info-q" data-info="heat"></button></h3>
+    <p class="meta mb-3">直近1週間 ・ 濃いほど笑顔が多め</p>
+    <div class="grid grid-cols-8 gap-1 text-center text-[10px] text-on-surface-variant">
+      <div></div><div>6</div><div>9</div><div>12</div><div>15</div><div>18</div><div>21</div><div>24</div>
+      <div class="flex items-center justify-end pr-1">月</div>
+      <div class="heat-cell" style="background:#d4f0db"></div><div class="heat-cell" style="background:#8fd6a6"></div><div class="heat-cell" style="background:#bfe8cb"></div><div class="heat-cell" style="background:#e9e8e7"></div><div class="heat-cell" style="background:#5cc081"></div><div class="heat-cell" style="background:#bfe8cb"></div><div class="heat-cell" style="background:#f5f3f3"></div>
+      <div class="flex items-center justify-end pr-1">火</div>
+      <div class="heat-cell" style="background:#bfe8cb"></div><div class="heat-cell" style="background:#5cc081"></div><div class="heat-cell" style="background:#8fd6a6"></div><div class="heat-cell" style="background:#ffeacc"></div><div class="heat-cell" style="background:#8fd6a6"></div><div class="heat-cell" style="background:#d4f0db"></div><div class="heat-cell" style="background:#f5f3f3"></div>
+      <div class="flex items-center justify-end pr-1">水</div>
+      <div class="heat-cell" style="background:#d4f0db"></div><div class="heat-cell" style="background:#8fd6a6"></div><div class="heat-cell" style="background:#5cc081"></div><div class="heat-cell" style="background:#bfe8cb"></div><div class="heat-cell" style="background:#8fd6a6"></div><div class="heat-cell" style="background:#e9e8e7"></div><div class="heat-cell" style="background:#f5f3f3"></div>
     </div>
   </article>
 
-  <!-- Out-of-scope notice -->
-  <article class="bg-surface-container bg-opacity-50 rounded-xl p-4 text-xs text-on-surface-variant">
-    <p class="flex items-start gap-2">
-      <span class="material-symbols-outlined" style="font-size:16px">info</span>
-      身長・体重・頭囲・体温・心拍は ORIGIN では計測していません。母子手帳や別のアプリをご利用ください。
-    </p>
+  <article class="bg-surface-container-lowest rounded-2xl p-5">
+    <h3 class="h-card font-headline flex items-center gap-2 mb-3"><span class="material-symbols-outlined">analytics</span>今月の記録 <span class="kind-pill kind-observed">観測</span></h3>
+    <div class="grid grid-cols-3 gap-3 text-center mb-3">
+      <div class="bg-surface-container-low rounded-xl p-3"><p class="stat-num font-headline text-tertiary">142</p><p class="meta">笑顔</p></div>
+      <div class="bg-surface-container-low rounded-xl p-3"><p class="stat-num font-headline text-info">3</p><p class="meta">新しい発声</p></div>
+      <div class="bg-surface-container-low rounded-xl p-3"><p class="stat-num font-headline text-success">89%</p><p class="meta">声かけ反応率</p></div>
+    </div>
+    <div class="bg-surface-container-low rounded-xl p-3 flex items-center gap-2">
+      <p class="txt flex-1">先月より日中の体動が多めに観測されました</p>
+      <span class="kind-pill kind-observed">観測</span><button class="info-q" data-info="motion"></button>
+    </div>
   </article>
+
+  <article class="bg-surface-container-low rounded-2xl p-5">
+    <h3 class="h-card font-headline flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-tertiary">menu_book</span>4月のふりかえり <span class="kind-pill kind-inferred">AI生成</span></h3>
+    <p class="read mb-3">4月は新しい姿勢への挑戦が見られた月でした。3ヶ月前には観測されていなかった「座位」「立位」が、今では安定して観測されています。</p>
+    <div class="border-t border-surface-container pt-3">
+      <p class="h-sub mb-1 flex items-center gap-1"><span class="material-symbols-outlined text-tertiary" style="font-size:17px">fingerprint</span>この子の観測上の傾向 <span class="kind-pill kind-hypothesis">仮説</span><button class="info-q" data-info="trait"></button></p>
+      <p class="read">最近の観測では、音への反応が比較的多く、午前中に活動的な時間が多い傾向がありました。</p>
+    </div>
+  </article>
+
+  <button onclick="showInfo('scope')" class="w-full flex items-center gap-2 rounded-xl bg-surface-container px-4 py-3 meta" style="justify-content:flex-start">
+    <span class="material-symbols-outlined" style="font-size:17px">info</span>計測していない項目について
+  </button>
 </section>
 
-<!-- ============ SCENE: SETTINGS ============ -->
-<section id="scene-settings" class="scene px-4 py-4 space-y-4">
-  <h2 class="text-3xl font-extrabold font-headline tracking-tight mb-4">設定</h2>
-
+<!-- ============ SETTINGS ============ -->
+<section id="scene-settings" class="scene px-4 py-4 space-y-3">
+  <h2 class="h-page font-headline mb-2 pt-1">設定</h2>
   <article class="bg-surface-container-low rounded-2xl p-4">
-    <h3 class="text-sm font-bold text-on-surface-variant mb-3">緊急時</h3>
-    <button onclick="openHaltModal()" class="w-full bg-error text-on-error rounded-2xl py-4 font-bold flex items-center justify-center gap-2">
-      <span class="material-symbols-outlined">power_settings_new</span>
-      カメラ・録画を即時停止
-    </button>
+    <button onclick="openHaltModal()" class="w-full bg-error text-on-error rounded-2xl py-4 font-bold flex items-center justify-center gap-2"><span class="material-symbols-outlined">power_settings_new</span>カメラ・録画を即時停止</button>
   </article>
-
   <article class="bg-surface-container-lowest rounded-2xl p-5">
-    <h3 class="font-bold mb-3 flex items-center gap-2"><span class="material-symbols-outlined text-success">shield</span>プライバシー</h3>
-    <ul class="text-sm space-y-3">
+    <h3 class="h-card font-headline mb-3 flex items-center gap-2"><span class="material-symbols-outlined text-success">shield</span>プライバシー</h3>
+    <ul class="txt space-y-2">
       <li class="flex items-center gap-2"><span class="material-symbols-outlined text-success" style="font-size:18px">home</span>すべて家庭内サーバーで処理</li>
       <li class="flex items-center gap-2"><span class="material-symbols-outlined text-success" style="font-size:18px">cloud_off</span>外部送信なし（推論はローカル）</li>
-      <li class="flex items-center gap-2"><span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>保管期間: 最大 90日</li>
+      <li class="flex items-center gap-2"><span class="material-symbols-outlined" style="font-size:18px">calendar_month</span>保管期間 最大90日</li>
     </ul>
   </article>
-
   <article class="bg-surface-container-lowest rounded-2xl p-5">
-    <h3 class="font-bold mb-3 flex items-center gap-2"><span class="material-symbols-outlined">delete</span>データ削除</h3>
+    <h3 class="h-card font-headline mb-3 flex items-center gap-2"><span class="material-symbols-outlined">delete</span>データ削除</h3>
     <div class="space-y-2">
-      <button class="w-full bg-surface-container-low rounded-xl py-3 text-sm font-bold text-left px-4">今日のデータを削除</button>
-      <button class="w-full bg-surface-container-low rounded-xl py-3 text-sm font-bold text-left px-4">先週のデータを削除</button>
-      <button class="w-full bg-error-container text-on-error-container rounded-xl py-3 text-sm font-bold text-left px-4">すべてのデータを削除</button>
+      <button class="w-full bg-surface-container-low rounded-xl py-3 txt font-bold text-left px-4">今日のデータを削除</button>
+      <button class="w-full bg-surface-container-low rounded-xl py-3 txt font-bold text-left px-4">先週のデータを削除</button>
+      <button class="w-full bg-error-container text-on-error-container rounded-xl py-3 txt font-bold text-left px-4">すべてのデータを削除</button>
     </div>
   </article>
-
   <article class="bg-surface-container-lowest rounded-2xl p-5">
-    <h3 class="font-bold mb-3 flex items-center gap-2"><span class="material-symbols-outlined">notifications</span>通知設定</h3>
-    <div class="space-y-3">
-      <label class="flex items-center justify-between py-2"><span class="text-sm">鳴き声検出時の通知</span><input type="checkbox" checked class="w-12 h-6 rounded-full"/></label>
-      <label class="flex items-center justify-between py-2"><span class="text-sm">「初めて」候補の通知</span><input type="checkbox" checked class="w-12 h-6 rounded-full"/></label>
-      <label class="flex items-center justify-between py-2"><span class="text-sm">月次レポート通知</span><input type="checkbox" checked class="w-12 h-6 rounded-full"/></label>
+    <h3 class="h-card font-headline mb-3 flex items-center gap-2"><span class="material-symbols-outlined">notifications</span>通知設定</h3>
+    <div class="space-y-1">
+      <label class="flex items-center justify-between py-2"><span class="txt">鳴き声検出時</span><input type="checkbox" checked class="w-12 h-6 rounded-full"/></label>
+      <label class="flex items-center justify-between py-2"><span class="txt">「初めて」候補</span><input type="checkbox" checked class="w-12 h-6 rounded-full"/></label>
+      <label class="flex items-center justify-between py-2"><span class="txt">月次レポート</span><input type="checkbox" checked class="w-12 h-6 rounded-full"/></label>
     </div>
   </article>
-
   <article class="bg-surface-container-lowest rounded-2xl p-5">
-    <h3 class="font-bold mb-3 flex items-center gap-2"><span class="material-symbols-outlined">graphic_eq</span>環境品質</h3>
-    <p class="text-xs text-on-surface-variant mb-3 font-label">TV・音楽の音量によって AI 検出精度が下がります</p>
+    <h3 class="h-card font-headline mb-2 flex items-center gap-2"><span class="material-symbols-outlined">graphic_eq</span>環境品質（Demo）</h3>
     <div class="space-y-2">
-      <button onclick="setEnvBadge('good')" class="w-full bg-surface-container-low rounded-xl py-2 text-sm text-left px-4">[Demo] 静寂環境</button>
-      <button onclick="setEnvBadge('warn')" class="w-full bg-surface-container-low rounded-xl py-2 text-sm text-left px-4">[Demo] TV音あり (精度低下)</button>
-      <button onclick="setEnvBadge('bad')" class="w-full bg-surface-container-low rounded-xl py-2 text-sm text-left px-4">[Demo] 高騒音 (精度大幅低下)</button>
+      <button onclick="setEnvBadge('good')" class="w-full bg-surface-container-low rounded-xl py-2 txt text-left px-4">静寂環境</button>
+      <button onclick="setEnvBadge('warn')" class="w-full bg-surface-container-low rounded-xl py-2 txt text-left px-4">TV音あり (精度低下)</button>
+      <button onclick="setEnvBadge('bad')" class="w-full bg-surface-container-low rounded-xl py-2 txt text-left px-4">高騒音 (精度大幅低下)</button>
     </div>
-  </article>
-
-  <article class="bg-surface-container-low rounded-2xl p-4">
-    <h3 class="font-bold mb-3 flex items-center gap-2"><span class="material-symbols-outlined">download</span>エクスポート</h3>
-    <button class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl py-3 text-sm font-bold flex items-center justify-center gap-2"><span class="material-symbols-outlined" style="font-size:18px">cloud_download</span>全データをダウンロード</button>
   </article>
 </section>
 
 </main>
 
-<!-- ============ Bottom Navigation (4 tabs) ============ -->
+<!-- ===== Bottom Nav ===== -->
 <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto md:max-w-2xl glass-effect border-t border-outline-variant z-40">
   <div class="grid grid-cols-4">
-    <button onclick="switchScene('home')" data-tab="home" class="tab-btn flex flex-col items-center py-2 gap-0.5 text-on-surface-variant tab-active">
-      <span class="tab-icon material-symbols-outlined">home</span>
-      <span class="tab-label text-xs font-label">ホーム</span>
-    </button>
-    <button onclick="switchScene('cry')" data-tab="cry" class="tab-btn relative flex flex-col items-center py-2 gap-0.5 text-on-surface-variant">
-      <span class="tab-icon material-symbols-outlined">lightbulb</span>
-      <span class="tab-label text-xs font-label">気づき</span>
-    </button>
-    <button onclick="switchScene('growth')" data-tab="growth" class="tab-btn flex flex-col items-center py-2 gap-0.5 text-on-surface-variant">
-      <span class="tab-icon material-symbols-outlined">monitoring</span>
-      <span class="tab-label text-xs font-label">成長</span>
-    </button>
-    <button onclick="switchScene('settings')" data-tab="settings" class="tab-btn flex flex-col items-center py-2 gap-0.5 text-on-surface-variant">
-      <span class="tab-icon material-symbols-outlined">settings</span>
-      <span class="tab-label text-xs font-label">設定</span>
-    </button>
+    <button onclick="switchScene('home')" data-tab="home" class="tab-btn flex flex-col items-center py-2 gap-0.5 text-on-surface-variant tab-active"><span class="tab-icon material-symbols-outlined">home</span><span class="tab-label text-xs">ホーム</span></button>
+    <button onclick="switchScene('cry')" data-tab="cry" class="tab-btn flex flex-col items-center py-2 gap-0.5 text-on-surface-variant"><span class="tab-icon material-symbols-outlined">lightbulb</span><span class="tab-label text-xs">気づき</span></button>
+    <button onclick="switchScene('growth')" data-tab="growth" class="tab-btn flex flex-col items-center py-2 gap-0.5 text-on-surface-variant"><span class="tab-icon material-symbols-outlined">monitoring</span><span class="tab-label text-xs">成長</span></button>
+    <button onclick="switchScene('settings')" data-tab="settings" class="tab-btn flex flex-col items-center py-2 gap-0.5 text-on-surface-variant"><span class="tab-icon material-symbols-outlined">settings</span><span class="tab-label text-xs">設定</span></button>
   </div>
 </nav>
 
-<!-- ============ P0: J1 EMERGENCY OVERLAY (independent of tabs) ============ -->
-<div id="emergency-overlay" class="emergency-overlay">
-  <!-- Header -->
-  <div class="sticky top-0 bg-error text-on-error px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <span class="live-dot" style="background:white"></span>
-      <p class="font-bold">鳴き声を検出</p>
-    </div>
-    <button onclick="dismissEmergency()" class="text-xs underline tap-sm">閉じる</button>
+<!-- ===== Chat overlay ===== -->
+<div id="chat-overlay" class="chat-overlay">
+  <div class="sticky top-0 glass-effect px-4 py-3 flex items-center justify-between border-b border-outline-variant">
+    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">forum</span><p class="h-card font-headline">相談</p><span class="kind-pill kind-inferred">AI</span><button class="info-q" data-info="chat"></button></div>
+    <button onclick="dismissChat()" class="meta underline tap-sm">閉じる</button>
   </div>
-
-  <div class="px-4 py-4 space-y-3">
-    <!-- Top: status -->
-    <div class="flex items-center justify-between">
-      <div>
-        <p class="text-xs text-on-surface-variant font-label">14:23 から</p>
-        <p class="text-2xl font-bold font-headline">1分23秒継続中</p>
-      </div>
-      <button class="rounded-full p-3 bg-primary text-on-primary emergency-pulse">
-        <span class="material-symbols-outlined">videocam</span>
-      </button>
+  <div id="chat-body" class="chat-body space-y-4">
+    <div class="chat-bubble-ai"><p class="txt">こんばんは。今日の観測について、聞きたいことを下から選んでください。</p></div>
+  </div>
+  <div class="border-t border-outline-variant bg-surface px-4 py-3">
+    <div class="flex flex-wrap gap-2 mb-2">
+      <button onclick="askTemplate('today')" class="chat-chip tap-sm">今日の様子は?</button>
+      <button onclick="askTemplate('react')" class="chat-chip tap-sm">よく反応したものは?</button>
+      <button onclick="askTemplate('sleep')" class="chat-chip tap-sm">昨夜は眠れた?</button>
+      <button onclick="askTemplate('growth')" class="chat-chip tap-sm">最近できた動きは?</button>
+      <button onclick="askTemplate('cry')" class="chat-chip tap-sm">いつ泣いてた?</button>
+      <button onclick="askTemplate('health')" class="chat-chip tap-sm">体調は大丈夫?</button>
     </div>
-
-    <!-- ENV warning if applicable -->
-    <div id="emergency-env-warn" class="hidden bg-warning bg-opacity-15 rounded-xl p-3 text-xs">
-      <p class="flex items-center gap-2"><span class="material-symbols-outlined text-warning" style="font-size:16px">warning</span><span class="font-bold">TV音検出中 - 推定精度が下がっています</span></p>
+    <div class="flex items-center gap-2 opacity-50">
+      <input type="text" disabled placeholder="自由入力は準備中（まずは定型質問から）" class="flex-1 txt rounded-full border border-outline-variant bg-surface-container-lowest px-4 py-2"/>
+      <span class="material-symbols-outlined text-on-surface-variant">send</span>
     </div>
-
-    <!-- Primary action: まず試す1つ -->
-    <article class="bg-primary text-on-primary rounded-2xl p-5 shadow-lg">
-      <p class="text-xs opacity-90 font-label mb-1">まず試す</p>
-      <p class="text-xl font-bold font-headline mb-3">抱き上げてみる</p>
-      <p class="text-sm opacity-90 mb-4">直近の傾向: 鳴き声の前に体動増加 → 接触で落ち着くパターン</p>
-      <button class="w-full bg-white text-primary rounded-full py-3 font-bold">試した</button>
-    </article>
-
-    <!-- Candidate causes -->
-    <div class="bg-surface-container-lowest rounded-2xl p-4">
-      <div class="flex items-center justify-between mb-3">
-        <h3 class="font-bold font-headline">候補となる理由</h3>
-        <span class="kind-pill kind-hypothesis"><span class="material-symbols-outlined" style="font-size:11px">help</span>仮説 (確度: 低)</span>
-      </div>
-      <p class="text-xs text-on-surface-variant mb-3 font-label">複数の可能性があります</p>
-      <ul class="space-y-2">
-        <li class="flex items-center justify-between py-2 border-b border-surface-container">
-          <div>
-            <p class="font-bold text-sm">空腹の可能性</p>
-            <p class="text-xs text-on-surface-variant">最終授乳: 約3時間20分前</p>
-          </div>
-          <button class="text-xs px-3 py-1 bg-surface-container-low rounded-full font-bold">試す</button>
-        </li>
-        <li class="flex items-center justify-between py-2 border-b border-surface-container">
-          <div>
-            <p class="font-bold text-sm">眠気の可能性</p>
-            <p class="text-xs text-on-surface-variant">起床から: 約4時間</p>
-          </div>
-          <button class="text-xs px-3 py-1 bg-surface-container-low rounded-full font-bold">試す</button>
-        </li>
-        <li class="flex items-center justify-between py-2">
-          <div>
-            <p class="font-bold text-sm">不快感の可能性</p>
-            <p class="text-xs text-on-surface-variant">最終確認: 約4時間前</p>
-          </div>
-          <button class="text-xs px-3 py-1 bg-surface-container-low rounded-full font-bold">試す</button>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Quick actions -->
-    <div class="grid grid-cols-3 gap-2">
-      <button class="bg-surface-container-lowest border border-outline-variant rounded-xl py-3 text-xs font-bold">
-        <span class="material-symbols-outlined block mx-auto" style="font-size:18px">volume_up</span>
-        音声を聞く
-      </button>
-      <button class="bg-surface-container-lowest border border-outline-variant rounded-xl py-3 text-xs font-bold">
-        <span class="material-symbols-outlined block mx-auto" style="font-size:18px">notifications_paused</span>
-        5分ミュート
-      </button>
-      <button onclick="dismissEmergency()" class="bg-surface-container-lowest border border-outline-variant rounded-xl py-3 text-xs font-bold">
-        <span class="material-symbols-outlined block mx-auto" style="font-size:18px">check</span>
-        対応済み
-      </button>
-    </div>
-
-    <!-- Collapsible: similar past situations -->
-    <details class="bg-surface-container-low rounded-xl p-3">
-      <summary class="text-sm font-bold cursor-pointer flex items-center gap-2">
-        <span class="material-symbols-outlined" style="font-size:16px">history</span>
-        過去の似た場面
-      </summary>
-      <div class="mt-3 space-y-2 text-xs">
-        <p class="text-on-surface-variant">過去 7日間で同じ時間帯の鳴き声: <span class="font-bold">5回</span></p>
-        <p class="text-on-surface-variant">対応で落ち着いた頻度: 抱っこ <span class="font-bold">3/5</span> / 授乳 <span class="font-bold">2/5</span></p>
-      </div>
-    </details>
   </div>
 </div>
 
-<!-- ============ P0: LOCK SCREEN MOCK (Push notification preview) ============ -->
+<!-- ===== Emergency overlay (J1) ===== -->
+<div id="emergency-overlay" class="overlay">
+  <div class="sticky top-0 bg-error text-on-error px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2"><span class="live-dot" style="background:white"></span><p class="font-bold">鳴き声を検出</p></div>
+    <button onclick="dismissEmergency()" class="meta underline tap-sm" style="color:#fff">閉じる</button>
+  </div>
+  <div class="px-4 py-4 space-y-3">
+    <div class="flex items-center justify-between">
+      <div><p class="meta">14:23 から</p><p class="text-2xl font-bold font-headline">1分23秒継続中</p></div>
+      <button class="rounded-full p-3 bg-primary text-on-primary emergency-pulse"><span class="material-symbols-outlined">videocam</span></button>
+    </div>
+    <div id="emergency-env-warn" class="hidden bg-warning bg-opacity-15 rounded-xl p-3"><p class="txt flex items-center gap-2"><span class="material-symbols-outlined text-warning" style="font-size:18px">warning</span><span class="font-bold">TV音検出中 - 推定精度が下がっています</span></p></div>
+    <article class="bg-primary text-on-primary rounded-2xl p-5 shadow-lg">
+      <p class="meta mb-1" style="color:rgba(255,255,255,0.9)">まず試す</p>
+      <p class="text-xl font-bold font-headline mb-3">抱き上げてみる</p>
+      <p class="txt opacity-90 mb-4">直近の傾向: 鳴き声の前に体動増加 → 接触で落ち着くパターン</p>
+      <button class="w-full bg-white text-primary rounded-full py-3 font-bold">試した</button>
+    </article>
+    <div class="bg-surface-container-lowest rounded-2xl p-4">
+      <h3 class="h-sub font-headline flex items-center gap-2 mb-3">候補となる理由 <span class="kind-pill kind-hypothesis">仮説 確度:低</span><button class="info-q" data-info="cause"></button></h3>
+      <ul class="space-y-2">
+        <li class="flex items-center justify-between py-2 border-b border-surface-container"><div><p class="txt font-bold">空腹の可能性</p><p class="meta">最終授乳 約3時間20分前</p></div><button class="meta px-3 py-1 bg-surface-container-low rounded-full font-bold">試す</button></li>
+        <li class="flex items-center justify-between py-2 border-b border-surface-container"><div><p class="txt font-bold">眠気の可能性</p><p class="meta">起床から 約4時間</p></div><button class="meta px-3 py-1 bg-surface-container-low rounded-full font-bold">試す</button></li>
+        <li class="flex items-center justify-between py-2"><div><p class="txt font-bold">不快感の可能性</p><p class="meta">最終確認 約4時間前</p></div><button class="meta px-3 py-1 bg-surface-container-low rounded-full font-bold">試す</button></li>
+      </ul>
+    </div>
+    <div class="grid grid-cols-3 gap-2">
+      <button class="bg-surface-container-lowest border border-outline-variant rounded-xl py-3 meta font-bold"><span class="material-symbols-outlined block mx-auto" style="font-size:20px">volume_up</span>音声を聞く</button>
+      <button class="bg-surface-container-lowest border border-outline-variant rounded-xl py-3 meta font-bold"><span class="material-symbols-outlined block mx-auto" style="font-size:20px">notifications_paused</span>5分ミュート</button>
+      <button onclick="dismissEmergency()" class="bg-surface-container-lowest border border-outline-variant rounded-xl py-3 meta font-bold"><span class="material-symbols-outlined block mx-auto" style="font-size:20px">check</span>対応済み</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Lock screen mock ===== -->
 <div id="lock-screen" class="lock-screen">
-  <p class="lock-time" id="lock-time">14:23</p>
+  <p class="lock-time font-headline" id="lock-time">14:23</p>
   <p class="lock-date" id="lock-date">月曜日, 4月27日</p>
   <div class="space-y-2">
-    <!-- Push notification card -->
     <div class="push-card">
       <div class="flex items-start gap-3">
         <span class="material-symbols-outlined text-error" style="font-size:24px">graphic_eq</span>
         <div class="flex-1">
-          <div class="flex items-center justify-between">
-            <p class="text-xs font-label text-on-surface-variant">MIROKU</p>
-            <p class="text-xs font-label text-on-surface-variant">今</p>
-          </div>
-          <p class="text-sm font-bold mt-1">鳴き声を検出</p>
-          <p class="text-xs text-on-surface-variant mt-1">候補: 空腹 / 眠気 ・確度: 低 ・1分継続中</p>
-          <!-- Quick actions on lock screen -->
-          <div class="flex gap-2 mt-3">
-            <button onclick="openFromLock()" class="flex-1 bg-primary text-on-primary text-xs font-bold py-2 rounded-full">対応する</button>
-            <button onclick="dismissLock()" class="flex-1 bg-surface-container-low text-xs py-2 rounded-full">5分ミュート</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Env warning push (conditional) -->
-    <div class="push-card opacity-90">
-      <div class="flex items-start gap-3">
-        <span class="material-symbols-outlined text-warning" style="font-size:20px">warning</span>
-        <div class="flex-1">
-          <p class="text-xs font-label text-on-surface-variant">MIROKU ・ 環境</p>
-          <p class="text-sm mt-1">TV音検出中 - 推定精度が低下しています</p>
+          <div class="flex items-center justify-between"><p class="meta">MIROKU</p><p class="meta">今</p></div>
+          <p class="txt font-bold mt-1">鳴き声を検出</p>
+          <p class="meta mt-1">候補: 空腹 / 眠気 ・確度: 低</p>
+          <div class="flex gap-2 mt-3"><button onclick="openFromLock()" class="flex-1 bg-primary text-on-primary meta font-bold py-2 rounded-full">対応する</button><button onclick="dismissLock()" class="flex-1 bg-surface-container-low meta py-2 rounded-full">5分ミュート</button></div>
         </div>
       </div>
     </div>
   </div>
-
-  <button onclick="dismissLock()" class="mt-auto text-white text-xs underline opacity-70 mx-auto tap-sm">[Demo を閉じる]</button>
+  <button onclick="dismissLock()" class="mt-auto text-white meta underline opacity-70 mx-auto tap-sm">[Demo を閉じる]</button>
 </div>
 
-<!-- ============ Halt Modal ============ -->
-<div id="halt-modal" class="modal-overlay">
-  <div class="bg-surface-container-lowest rounded-t-2xl md:rounded-2xl w-full max-w-md p-6">
-    <h3 class="text-xl font-extrabold font-headline mb-2 flex items-center gap-2">
-      <span class="material-symbols-outlined text-error">power_settings_new</span>
-      録画を停止しますか？
-    </h3>
-    <p class="text-sm text-on-surface-variant mb-4">以下が即座に停止されます:</p>
-    <ul class="text-sm space-y-1 mb-5 ml-4">
-      <li>• カメラ録画 / マイク録音</li>
-      <li>• AI 推論（ローカル）</li>
-      <li>• 鳴き声・「初めて」候補通知</li>
-    </ul>
-    <p class="text-xs text-on-surface-variant mb-5">既存のローカルデータは保持されます。</p>
-    <div class="flex gap-2">
-      <button onclick="closeHaltModal()" class="flex-1 bg-surface-container-low rounded-full py-3 font-bold">キャンセル</button>
-      <button onclick="executeHalt()" class="flex-1 bg-error text-on-error rounded-full py-3 font-bold">停止する</button>
-    </div>
+<!-- ===== Halt modal ===== -->
+<div id="halt-modal" class="sheet">
+  <div class="sheet-card">
+    <h3 class="text-xl font-extrabold font-headline mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-error">power_settings_new</span>録画を停止しますか？</h3>
+    <ul class="txt space-y-1 my-4 ml-4"><li>• カメラ録画 / マイク録音</li><li>• AI 推論（ローカル）</li><li>• 通知</li></ul>
+    <p class="meta mb-5">既存のローカルデータは保持されます。</p>
+    <div class="flex gap-2"><button onclick="closeHaltModal()" class="flex-1 bg-surface-container-low rounded-full py-3 font-bold">キャンセル</button><button onclick="executeHalt()" class="flex-1 bg-error text-on-error rounded-full py-3 font-bold">停止する</button></div>
   </div>
 </div>
 
-<!-- Toast -->
-<div id="toast" class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 bg-on-surface text-surface px-5 py-3 rounded-full text-sm font-bold z-50 shadow-lg"></div>
+<!-- ===== Info bottom sheet ===== -->
+<div id="info-sheet" class="sheet">
+  <div class="sheet-card">
+    <div class="flex items-center justify-between mb-3"><h3 id="info-title" class="h-card font-headline">補足</h3><button onclick="closeInfo()" class="tap-sm text-on-surface-variant"><span class="material-symbols-outlined">close</span></button></div>
+    <div id="info-content" class="txt text-on-surface-variant leading-relaxed"></div>
+  </div>
+</div>
+
+<div id="toast" class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 bg-on-surface text-surface px-5 py-3 rounded-full txt font-bold z-50 shadow-lg"></div>
 
 <script>
-function switchScene(name) {
-  document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
-  const target = document.getElementById('scene-' + name);
-  if (target) target.classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b => {
-    b.classList.toggle('tab-active', b.dataset.tab === name);
-  });
+function switchScene(name){
+  document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));
+  const t=document.getElementById('scene-'+name); if(t)t.classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('tab-active', b.dataset.tab===name));
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// P1: Time-based home mode auto-switch + manual override
-let userOverride = null;
-function setHomeMode(modeOverride, manual) {
-  let mode;
-  if (manual) {
-    userOverride = modeOverride;
-    mode = modeOverride;
-    try { localStorage.setItem('miroku_home_mode', modeOverride); } catch(e){}
-  } else {
-    const saved = (function(){ try { return localStorage.getItem('miroku_home_mode'); } catch(e){ return null; } })();
-    if (saved) { mode = saved; userOverride = saved; }
-    else {
-      const h = new Date().getHours();
-      if (h >= 5 && h < 10) mode = 'morning';
-      else if (h >= 10 && h < 20) mode = 'day';
-      else mode = 'evening';
-    }
-  }
-  ['morning','day','evening'].forEach(m => {
-    document.getElementById('home-' + m).classList.toggle('hidden', m !== mode);
-  });
-  document.querySelectorAll('.mode-chip').forEach(b => {
-    const isActive = b.dataset.mode === mode;
-    b.classList.toggle('bg-primary', isActive);
-    b.classList.toggle('text-on-primary', isActive);
-    b.classList.toggle('bg-surface-container-low', !isActive);
-  });
+const GREET = {
+  morning: { hi:'おはよう、田中さん', clock:'4月27日 (月) 6:42', heading:'昨夜のまとめ', icon:'crib', state:'静かに過ごしています', sub:'6:18 に起き上がる動きがありました' },
+  day:     { hi:'こんにちは、田中さん', clock:'4月27日 (月) 14:30', heading:'いまの一日', icon:'bedtime', state:'静かに横になっています', sub:'12:45 から動きの少ない状態が続いています' },
+  evening: { hi:'こんばんは、田中さん', clock:'4月27日 (月) 21:30', heading:'今日のふりかえり', icon:'crib', state:'眠っているようです', sub:'20:40 ごろから静かな状態が続いています' }
+};
+function setSummary(mode, isDemo){
+  let m = mode;
+  if(!m){ const h=new Date().getHours(); m = (h>=5&&h<10)?'morning':(h>=10&&h<20)?'day':'evening'; }
+  ['morning','day','evening'].forEach(x=>document.getElementById('summary-'+x).classList.toggle('hidden', x!==m));
+  const g = GREET[m];
+  document.getElementById('home-greeting').textContent = g.hi;
+  document.getElementById('home-clock').textContent = g.clock;
+  document.getElementById('summary-heading').textContent = g.heading;
+  document.getElementById('live-icon').textContent = g.icon;
+  document.getElementById('live-state').textContent = g.state;
+  document.getElementById('live-sub').textContent = g.sub;
+  document.querySelectorAll('.demo-seg').forEach(b=>b.classList.toggle('on', b.dataset.seg===m));
 }
-setHomeMode();
+setSummary();
 
-// Halt
 function openHaltModal(){ document.getElementById('halt-modal').classList.add('active'); }
 function closeHaltModal(){ document.getElementById('halt-modal').classList.remove('active'); }
-function executeHalt(){
-  closeHaltModal();
-  document.getElementById('halted-banner').classList.remove('hidden');
-  document.getElementById('privacy-badge').classList.add('hidden');
-  toast('録画を停止しました');
-}
+function executeHalt(){ closeHaltModal(); document.getElementById('halted-banner').classList.remove('hidden'); document.getElementById('privacy-badge').classList.add('hidden'); toast('録画を停止しました'); }
 
-// P0: Emergency overlay (J1 - independent of tabs)
-function showEmergency(){
-  document.getElementById('emergency-overlay').classList.add('active');
-  // If env is not "good", show warning
-  const envBadge = document.getElementById('env-badge');
-  const warn = document.getElementById('emergency-env-warn');
-  if (envBadge.classList.contains('env-warn') || envBadge.classList.contains('env-bad')) {
-    warn.classList.remove('hidden');
-  } else {
-    warn.classList.add('hidden');
-  }
-}
-function dismissEmergency(){
-  document.getElementById('emergency-overlay').classList.remove('active');
-  toast('対応を記録しました');
-}
+function showEmergency(){ document.getElementById('emergency-overlay').classList.add('active'); const e=document.getElementById('env-badge'), w=document.getElementById('emergency-env-warn'); if(e.classList.contains('env-warn')||e.classList.contains('env-bad'))w.classList.remove('hidden'); else w.classList.add('hidden'); }
+function dismissEmergency(){ document.getElementById('emergency-overlay').classList.remove('active'); toast('対応を記録しました'); }
+function simulateCrying(){ showEmergency(); }
 
-// Demo trigger from notices tab
-function simulateCrying(){
-  showEmergency();
-}
+function showLockScreen(){ const n=new Date(); document.getElementById('lock-time').textContent=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0'); document.getElementById('lock-screen').classList.add('active'); }
+function dismissLock(){ document.getElementById('lock-screen').classList.remove('active'); }
+function openFromLock(){ dismissLock(); showEmergency(); }
 
-// P0: Lock screen mock
-function showLockScreen(){
-  // Update time
-  const now = new Date();
-  document.getElementById('lock-time').textContent =
-    now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-  document.getElementById('lock-screen').classList.add('active');
-}
-function dismissLock(){
-  document.getElementById('lock-screen').classList.remove('active');
-}
-function openFromLock(){
-  // Deep link: lock notification → emergency overlay (skip tab navigation)
-  dismissLock();
-  showEmergency();
-}
+function setEnvBadge(level){ const b=document.getElementById('env-badge'), t=document.getElementById('env-text'); b.classList.remove('env-good','env-warn','env-bad');
+  if(level==='good'){b.classList.add('env-good');t.textContent='環境: 静寂';} else if(level==='warn'){b.classList.add('env-warn');t.textContent='環境: TV音あり';} else {b.classList.add('env-bad');t.textContent='環境: 高騒音';}
+  toast('環境品質を「'+t.textContent.split(': ')[1]+'」に変更'); }
 
-// P1: Environment quality demo
-function setEnvBadge(level){
-  const badge = document.getElementById('env-badge');
-  const text = document.getElementById('env-text');
-  badge.classList.remove('env-good','env-warn','env-bad');
-  if (level === 'good') { badge.classList.add('env-good'); text.textContent = '環境: 静寂'; }
-  else if (level === 'warn') { badge.classList.add('env-warn'); text.textContent = '環境: TV音あり'; }
-  else { badge.classList.add('env-bad'); text.textContent = '環境: 高騒音'; }
-  toast('環境品質を「' + text.textContent.split(': ')[1] + '」に変更');
-}
+function showChat(){ document.getElementById('chat-overlay').classList.add('active'); }
+function dismissChat(){ document.getElementById('chat-overlay').classList.remove('active'); }
+const CHAT_ANSWERS={
+  today:{q:'今日の様子は?',html:'<p class="txt mb-2">今日は穏やかな一日でした。<span class="kind-pill kind-inferred">AI生成</span></p><ul class="meta space-y-1"><li>・14:23 立ち上がる姿（観測）</li><li>・17:48 声かけに笑い声（観測）</li><li>・泣き声検出 3回（参考値）</li></ul>'},
+  react:{q:'よく反応したものは?',html:'<p class="txt mb-2">笑顔の前後でよく見られた順です。<span class="kind-pill kind-hypothesis">仮説</span></p><ul class="meta space-y-1"><li>1. 大人の声かけ（共起48%）</li><li>2. おもちゃで遊ぶ（32%）</li><li>3. 音楽・動画音声（20%）</li></ul><p class="meta mt-2">共起の頻度です。必ず笑うわけではありません。</p>'},
+  sleep:{q:'昨夜は眠れた?',html:'<p class="txt mb-2">体動と静寂からの推定です。<span class="kind-pill kind-beta">β 参考値</span></p><ul class="meta space-y-1"><li>・推定の睡眠 約9時間</li><li>・起きた回数 2回</li></ul><p class="meta mt-2">睡眠推定は未検証の参考機能です。</p>'},
+  growth:{q:'最近できた動きは?',html:'<p class="txt mb-2">新しく安定して観測された動きです。<span class="kind-pill kind-observed">観測</span></p><ul class="meta space-y-1"><li>・「立位（5秒間の自立姿勢）」を今日観測</li><li>・「だ」の発声が2週間前から安定</li></ul><p class="meta mt-2">早い遅いを判断するものではありません。個人差があります。</p>'},
+  cry:{q:'いつ泣いてた?',html:'<p class="txt mb-2">泣き声が検出された時刻です。<span class="kind-pill kind-observed">観測</span></p><ul class="meta space-y-1"><li>・06:50 / 09:45 / 12:08</li></ul><p class="meta mt-2">検出には誤りが含まれることがあります（精度約50%）。</p>'},
+  health:{q:'体調は大丈夫?',html:'<p class="txt mb-2 font-bold">ORIGIN は体温・心拍などの健康指標を計測していません。</p><p class="meta">気になる症状があるときは医療機関にご相談ください。MIROKU は健康状態の判断はできません。</p>'}
+};
+function askTemplate(id){ const body=document.getElementById('chat-body'), a=CHAT_ANSWERS[id]; if(!a)return;
+  const u=document.createElement('div'); u.className='chat-bubble-user'; u.innerHTML='<p class="txt">'+a.q+'</p>'; body.appendChild(u);
+  const ai=document.createElement('div'); ai.className='chat-bubble-ai'; ai.innerHTML=a.html; body.appendChild(ai); body.scrollTop=body.scrollHeight; }
 
-function toast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.remove('hidden');
-  setTimeout(() => t.classList.add('hidden'), 2200);
-}
+const INFO={
+  legend:{t:'表示の見かた',c:'<div class="space-y-2"><p><span class="kind-pill kind-observed">観測</span> カメラ・マイクが検知した事実</p><p><span class="kind-pill kind-inferred">推定</span> AIが状況から推論したもの</p><p><span class="kind-pill kind-hypothesis">仮説</span> 確度が低い候補（参考程度）</p><p><span class="kind-pill kind-beta">β 参考値</span> 未検証の試験的な数値</p></div>'},
+  sleep:{t:'昨夜の睡眠について',c:'体動と静寂の組み合わせから推定した参考値です。体温・呼吸数は計測していません。睡眠の推定はまだ検証中の機能です。'},
+  care:{t:'関わりについて',c:'過去の観察にもとづく参考情報です。どんな関わり方をするかはご家庭の判断で決めてください。'},
+  alone:{t:'一人で活動した時間',c:'大人の関わり（声かけ・抱き上げ・接触）が検出されなかった区間です。TV音などがあると検出精度が下がることがあります。'},
+  cooccur:{t:'よく一緒に見られた刺激',c:'笑顔・笑い声の前後で観察された場面の共起頻度です。因果関係ではなく、この刺激で必ず笑うわけではありません。おもちゃの種類までは判別していません。声かけは「誰の声か」までは識別していません。'},
+  timeresp:{t:'時間帯別の反応傾向',c:'声かけ検出の後に笑顔・喃語・笑い声が観測された傾向です。関わり方の良し悪しを示すものではありません。'},
+  prevday:{t:'前日との比較',c:'2つの観察（前日の睡眠区間・今日の泣き声検出数）を並べた参考情報です。原因や因果を示すものではありません。睡眠推定は未検証、泣き声検出は精度約50%です。'},
+  crytime:{t:'泣き声が検出された時刻',c:'泣き声の検出には誤りが含まれることがあります（精度約50%）。時刻を並べた参考情報で、生活リズムを断定するものではありません。'},
+  dev:{t:'動きの発達タイムライン',c:'観測された動きと、一般的に見られる月齢の範囲です。個人差があり、診断的な意味はありません。「次に見られることがある変化」は予測ではなく一般的な目安です。'},
+  plateau:{t:'新しい動きが落ち着く時期',c:'新しい動きの観測が一定期間見られないことがあります。新しいことの前にこうした時期が見られることがあります。個人差があります。'},
+  heat:{t:'笑顔の時間帯',c:'笑顔・不機嫌が観測された時間帯の可視化です。表情は中信頼の観測で、サンプルの少ない時間帯は薄く表示しています。解釈には個人差があります。'},
+  motion:{t:'体動の月次比較',c:'観測された活動量（体動）の先月との比較です。意味の解釈には個人差があり、発達の進み具合を示すものではありません。'},
+  trait:{t:'この子の観測上の傾向',c:'観測できた動き・発声・表情・音への反応の傾向です。性格や気質を判定するものではなく、他のお子さんとの比較もしていません。'},
+  scope:{t:'計測していない項目',c:'身長・体重・頭囲・体温・心拍・呼吸数は ORIGIN では計測していません。これらは母子手帳や別のアプリ、医療機関をご利用ください。'},
+  cause:{t:'候補となる理由について',c:'複数の可能性を確度の低い「仮説」として示すものです。断定ではありません。TV音があるときは検出精度が下がるため、候補の信頼度も下がります。'},
+  chat:{t:'相談機能について',c:'観測データにもとづく参考情報を、定型の質問から選んで確認できます。診断ではありません。体調・健康に関する相談は医療機関へ。'}
+};
+function showInfo(key){ const i=INFO[key]; if(!i)return; document.getElementById('info-title').textContent=i.t; document.getElementById('info-content').innerHTML=i.c; document.getElementById('info-sheet').classList.add('active'); }
+function closeInfo(){ document.getElementById('info-sheet').classList.remove('active'); }
 
-// Deep link: ?notice=cry → emergency overlay
-if (location.search.indexOf('notice=cry') >= 0) {
-  setTimeout(showEmergency, 200);
-}
+document.addEventListener('click',function(e){
+  const q=e.target.closest('.info-q'); if(q){ e.preventDefault(); showInfo(q.getAttribute('data-info')); return; }
+  if(e.target.classList.contains('sheet')){ e.target.classList.remove('active'); }
+});
+
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.remove('hidden'); setTimeout(()=>t.classList.add('hidden'),2200); }
+
+if(location.search.indexOf('notice=cry')>=0) setTimeout(showEmergency,200);
+if(location.search.indexOf('chat=1')>=0) setTimeout(showChat,200);
 </script>
 </body>
 </html>
